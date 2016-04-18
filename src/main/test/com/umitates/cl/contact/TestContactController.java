@@ -11,7 +11,7 @@ public class TestContactController {
 		ModelMap model = new ModelMap();
 		
 		ContactController controller = new ContactController();
-		controller.getWelcomeMessage(model);
+		controller.welcomePage(model);
 		
 		Assert.assertEquals("Kisi Listesi Uygulamasina Hos Geldiniz", model.get("greeting"));
 	}
@@ -21,7 +21,7 @@ public class TestContactController {
 		ModelMap model = new ModelMap();
 		ContactController controller = new ContactController();
 		
-		String route = controller.getWelcomeMessage(model);
+		String route = controller.welcomePage(model);
 		
 		Assert.assertEquals("welcome", route);
 	}
