@@ -13,8 +13,6 @@
 		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 	</http>
 
-	<beans:bean id="mongoUserDetailsService" class="com.umitates.cl.core.security.MongoUserDetailsService"/>
-
     <authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="mongoUserDetailsService">
 			<password-encoder hash="plaintext" />
