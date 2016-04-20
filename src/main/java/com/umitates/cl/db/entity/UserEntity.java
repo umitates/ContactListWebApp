@@ -1,5 +1,7 @@
 package com.umitates.cl.db.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,17 +13,19 @@ public class UserEntity {
 	private String username;
 	private String password;
 	private String role;
+	private List<ContactEntity> contacts;
 
 	public UserEntity() {
 		super();
 	}
 
-	public UserEntity(String id, String username, String password, String role) {
+	public UserEntity(String id, String username, String password, String role, List<ContactEntity> contacts) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.contacts = contacts;
 	}
 
 	public String getUsername() {
@@ -54,6 +58,14 @@ public class UserEntity {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<ContactEntity> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<ContactEntity> contacts) {
+		this.contacts = contacts;
 	}
 
 }
