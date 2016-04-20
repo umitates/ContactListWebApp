@@ -8,9 +8,11 @@
  	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
  	http://www.springframework.org/schema/context
  	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-
-	<context:component-scan base-package="com.umitates.cl.core.security" />
-	<context:component-scan base-package="com.umitates.cl.db.repository" />
+	
+	<import resource="spring-mongo.xml"/>
+	<import resource="spring-security.xml"/>
+	
+	<context:component-scan base-package="com.umitates.cl" />
 
 	<mvc:annotation-driven />
 	
