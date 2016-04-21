@@ -39,12 +39,12 @@ import com.umitates.cl.db.repository.UserRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("classpath:/spring/spring-servlet.xml")
-public class TestContactController {
+public class TestQueryContactController {
 
 	private MockMvc mockMvc;
 	
 	@InjectMocks
-    private ContactController contactController;
+    private QueryContactController queryContactController;
 	 
 	@Mock
     private UserRepository userRepository;
@@ -60,7 +60,7 @@ public class TestContactController {
     }
 
     @Test
-    public void showWelcomePageToListLoginUserContacts() throws Exception {
+    public void showQueryContactPageToListLoginUserContacts() throws Exception {
     	ContactEntity contact = new ContactEntity();
     	
     	UserEntity userEntity = new UserEntity();
@@ -69,10 +69,10 @@ public class TestContactController {
     	when(userRepository.findByUsername("umit")).thenReturn(userEntity);
 
     	
-		mockMvc.perform(get("/"))
+		mockMvc.perform(get("/contact/query"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("welcome"))
-                .andExpect(forwardedUrl("welcome"))
+                .andExpect(view().name("/contact/contact_query"))
+                .andExpect(forwardedUrl("/contact/contact_query"))
                 .andExpect(model().attributeExists("contacts"));
 		
 		verify(userRepository, times(1)).findByUsername("umit");
@@ -80,7 +80,7 @@ public class TestContactController {
     }
 
     private void initContactController() {
-		mockMvc = MockMvcBuilders.standaloneSetup(contactController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(queryContactController).build();
 	}
 
 	private void initAuthenticatedUser() {

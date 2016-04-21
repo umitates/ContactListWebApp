@@ -4,13 +4,13 @@
 
 <html>
 <head>
-<title>Kisi Listesi</title>
+<title>Yeni Kisi Ekleme</title>
 </head>
 <body>
 
-	<h1>Kisi Listesi Uygulamasina Hos Geldiniz</h1>
+	<h1>Rehbere Yeni Kisi Ekleme</h1>
 
-	<form:form method="post" action="addContact" commandName="new_contact">
+	<form:form method="post" action="insert" commandName="new_contact">
 		<table>
 			<tr>
 				<td>Name:</td>
@@ -33,27 +33,6 @@
 			</tr>
 		</table>
 	</form:form>
-
-	<c:if test="${!empty contacts}">
-		<table class="data">
-			<tr>
-				<th>Isim</th>
-				<th>Soyisim</th>
-				<th>E-Posta</th>
-				<th>Telefon</th>
-				<th>Islem</th>
-			</tr>
-			<c:forEach items="${contacts}" var="contact">
-				<tr>
-					<td>${contact.name}</td>
-					<td>${contact.surname}</td>
-					<td>${contact.email}</td>
-					<td>${contact.phoneNumber}</td>
-					<td><a href="deleteContact/${contact.id}">Sil</a></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if>
 
 </body>
 </html>

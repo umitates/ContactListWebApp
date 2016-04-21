@@ -1,5 +1,6 @@
 package com.umitates.cl.contact;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,37 +18,39 @@ import com.umitates.cl.db.entity.UserEntity;
 import com.umitates.cl.db.repository.UserRepository;
 
 @Controller
-public class ContactController {
+public class InsertContactController {
 	
 	@Autowired
 	private UserRepository userRepository;
- 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcomePage(ModelMap model) {
-    	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	UserEntity userEntity = getUserDetail(user.getUsername());
+	
+	@RequestMapping(value = {"/contact/insert"}, method = RequestMethod.GET)
+    public String insertContactPage(ModelMap model) {
+
+		model.addAttribute("new_contact", new ContactEntity());
         
-        model.addAttribute("contacts", userEntity.getContacts());
-        model.addAttribute("new_contact", new ContactEntity());
-        
-        return "welcome";
+        return "/contact/contact_insert";
     }
-    
-	@RequestMapping(value = "/addContact", method = RequestMethod.POST)
-	public String addContact(@ModelAttribute(value = "new_contact") ContactEntity newContact, BindingResult result){
+	
+	@RequestMapping(value = "/contact/insert", method = RequestMethod.POST)
+	public String insertContact(@ModelAttribute(value = "new_contact") ContactEntity newContact, BindingResult result){
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	UserEntity userEntity = getUserDetail(user.getUsername());
 		
 		newContact.setId(UUID.randomUUID().toString());
 		
+		if(userEntity.getContacts() == null) {
+			userEntity.setContacts(new ArrayList<ContactEntity>());
+		}
+		
 		userEntity.getContacts().add(newContact);
 		
 		userRepository.save(userEntity);
 		
-		return "redirect:/welcome";
+		return "redirect:/contact/query";
 	}
     
 	public UserEntity getUserDetail(String username) {
 		return userRepository.findByUsername(username);
 	}
+
 }
