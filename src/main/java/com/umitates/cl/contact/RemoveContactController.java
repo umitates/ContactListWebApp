@@ -24,13 +24,8 @@ public class RemoveContactController {
 	public String removeContact(@PathVariable(value = "contactId") String contactId){
 		UserEntity userEntity = loginUserDetailsService.getAuthenticatedUserEntity();
 		
-    	for(int i = 0 ; i < userEntity.getContacts().size(); i++) {
-    		ContactEntity contact = userEntity.getContacts().get(i);
-    		if(contact.getId().equals(contactId)) {
-    			userEntity.getContacts().remove(i);
-    			break;
-    		}
-    	}
+		ContactEntity toBeRemovedContact = userEntity.getContact(contactId);
+		userEntity.getContacts().remove(toBeRemovedContact);
 		
 		userRepository.save(userEntity);
 		

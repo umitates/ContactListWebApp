@@ -27,9 +27,7 @@ public class UpdateContactController {
 	public String updateContactPage(ModelMap model, @PathVariable(value = "contactId") String contactId){
 		UserEntity userEntity = loginUserDetailsService.getAuthenticatedUserEntity();
 		
-		ContactEntity existingContact = findContact(contactId, userEntity);
-		
-		model.addAttribute("existing_contact", existingContact);
+		model.addAttribute("existing_contact", userEntity.getContact(contactId));
 		
 		return "/contact/contact_update";
 	}
@@ -38,7 +36,7 @@ public class UpdateContactController {
 	public String updateContact(@ModelAttribute(value = "existing_contact") ContactEntity updatedContact, BindingResult result){
 		UserEntity userEntity = loginUserDetailsService.getAuthenticatedUserEntity();
 		
-		ContactEntity existingContact = findContact(updatedContact.getId(), userEntity);
+		ContactEntity existingContact = userEntity.getContact(updatedContact.getId());
 		
 		existingContact.setName(updatedContact.getName());
 		existingContact.setSurname(updatedContact.getSurname());
@@ -48,17 +46,5 @@ public class UpdateContactController {
 		userRepository.save(userEntity);
 		
 		return "redirect:/contact/query";
-	}
-	
-	private ContactEntity findContact(String contactId, UserEntity userEntity) {
-		ContactEntity existingContact = null; 
-    	for(int i = 0 ; i < userEntity.getContacts().size(); i++) {
-    		ContactEntity contact = userEntity.getContacts().get(i);
-    		if(contact.getId().equals(contactId)) {
-    			existingContact = userEntity.getContacts().get(i);
-    			break;
-    		}
-    	}
-		return existingContact;
 	}
 }

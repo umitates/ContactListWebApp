@@ -1,7 +1,9 @@
 package com.umitates.cl.db.entity;
 
+import com.umitates.cl.core.entity.AbstractEntity;
 
-public class ContactEntity {
+
+public class ContactEntity extends AbstractEntity{
 
 	private String id;
 	private String name;

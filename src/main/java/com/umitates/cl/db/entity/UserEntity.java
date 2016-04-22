@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.umitates.cl.core.entity.AbstractEntity;
+
 @Document(collection = "users")
-public class UserEntity {
+public class UserEntity extends AbstractEntity{
 
 	@Id
 	private String id;
@@ -66,6 +68,15 @@ public class UserEntity {
 
 	public void setContacts(List<ContactEntity> contacts) {
 		this.contacts = contacts;
+	}
+	
+	public ContactEntity getContact(String contactId) {
+		for(ContactEntity contact : contacts) {
+			if(contact.getId().equals(contactId)) {
+				return contact;
+			}
+		}
+		return null;
 	}
 
 }
