@@ -23,7 +23,7 @@
 					<td>${contact.surname}</td>
 					<td>${contact.email}</td>
 					<td>${contact.phoneNumber}</td>
-					<td><a href="/ContactListWebApp/contact/remove/${contact.id}">Sil</a></td>
+					<td><a href="/ContactListWebApp/contact/remove/${contact.id}">Sil</a>/<a href="/ContactListWebApp/contact/update/${contact.id}">Güncelle</a></td>
 				</tr>
 			</c:forEach>
 		</table>
