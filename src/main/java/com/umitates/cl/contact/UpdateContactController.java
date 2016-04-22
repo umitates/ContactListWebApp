@@ -1,6 +1,7 @@
 package com.umitates.cl.contact;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ public class UpdateContactController {
 	private LoginUserDetailsService loginUserDetailsService;
 	
 	@RequestMapping(value = "/contact/update/{contactId}", method = RequestMethod.GET)
+	@CachePut(value = "user", key = "#contactId")
 	public String updateContactPage(ModelMap model, @PathVariable(value = "contactId") String contactId){
 		UserEntity userEntity = loginUserDetailsService.getAuthenticatedUserEntity();
 		

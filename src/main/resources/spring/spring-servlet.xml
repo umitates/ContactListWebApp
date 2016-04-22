@@ -11,6 +11,7 @@
 	
 	<import resource="spring-mongo.xml"/>
 	<import resource="spring-security.xml"/>
+	<import resource="spring-redis.xml"/>
 	
 	<context:component-scan base-package="com.umitates.cl" />
 
