@@ -23,13 +23,13 @@
 					<td>${contact.surname}</td>
 					<td>${contact.email}</td>
 					<td>${contact.phoneNumber}</td>
-					<td><a href="deleteContact/${contact.id}">Sil</a></td>
+					<td><a href="/ContactListWebApp/contact/remove/${contact.id}">Sil</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 	<br/>
-	<a href="./contact/insert">Yeni Kisi Ekle</a>
+	<a href="/ContactListWebApp/contact/insert">Yeni Kisi Ekle</a>
 
 </body>
 </html>
