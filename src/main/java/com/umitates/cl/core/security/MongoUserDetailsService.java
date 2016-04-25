@@ -14,12 +14,21 @@ import org.springframework.stereotype.Component;
 import com.umitates.cl.db.entity.UserEntity;
 import com.umitates.cl.db.repository.UserRepository;
 
+/**
+ * Components takes part in user authentication using mongodb users
+ * @author Umit Ates
+ */
 @Component
 public class MongoUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * Validate authenticated user
+	 * @param username unique identifier for user
+	 * @return authenticated user details
+	 */
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		boolean enabled = true;
@@ -37,11 +46,11 @@ public class MongoUserDetailsService implements UserDetailsService {
 		return user;
 	}
 
-	public List<SimpleGrantedAuthority> getAuthorities(String role) {
+	private List<SimpleGrantedAuthority> getAuthorities(String role) {
 		return Arrays.asList(new SimpleGrantedAuthority(role));
 	}
 
-	public UserEntity getUserDetail(String username) {
+	private UserEntity getUserDetail(String username) {
 		UserEntity user = userRepository.findByUsername(username);
 		return user;
 	}

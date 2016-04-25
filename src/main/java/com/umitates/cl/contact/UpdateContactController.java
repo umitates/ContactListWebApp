@@ -15,6 +15,11 @@ import com.umitates.cl.db.entity.ContactEntity;
 import com.umitates.cl.db.entity.UserEntity;
 import com.umitates.cl.db.repository.UserRepository;
 
+/**
+ * Controller takes part in contact updating
+ * @author Umit Ates
+ * 
+ */
 @Controller
 public class UpdateContactController {
 	

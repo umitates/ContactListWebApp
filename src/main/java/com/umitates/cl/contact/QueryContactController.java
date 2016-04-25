@@ -10,6 +10,11 @@ import com.umitates.cl.core.session.LoginUserDetailsService;
 import com.umitates.cl.db.entity.UserEntity;
 import com.umitates.cl.db.repository.UserRepository;
 
+/**
+ * Controller takes part in contact retrieval
+ * @author Umit Ates
+ * 
+ */
 @Controller
 public class QueryContactController {
 	
